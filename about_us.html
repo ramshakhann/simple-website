@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechZone – Smart Gadgets & Accessories</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+    <!-- Font Awesome CSS for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    </head>
+    <style>
+   
+
+        /* Custom Keyframe Animations for page/element transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+
+        @keyframes slideUpFadeIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up-fade {
+            animation: slideUpFadeIn 0.8s ease-out forwards;
+        }
+
+
+        /* Team member image styling */
+        .team-member-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%; /* Circular images */
+            border: 4px solid #190478; /* Teal border */
+            box-shadow: 0 4px 10px rgb(22, 206, 252);
+        }
+
+    </style>
+
+<body >
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html" style="font-size: xx-large;">TechZone</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about_us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact Us</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slider (Bootstrap Carousel) -->
+    <section id="home" class="p-0">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('./assets/images/sliderrr\ .jpg');">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Latest Tech Deals</h5>
+                        <p>Discover cutting-edge gadgets at unbeatable prices.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('./assets/images/sliderrrr\ 1.jpg');">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Smart Living Solutions</h5>
+                        <p>Innovate your home with our smart devices.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('./assets/images/slider\ 3.jpg');">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Elevate Your Gaming</h5>
+                        <p>High-performance gear for serious gamers.</p>
+                    </div>
+             </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <main class="animate-fade-in">
+      
+
+        <!-- About Healthy Mind Group Section -->
+        <section class="py-16 section-bg-light container mx-auto px-4 rounded-xl mt-8 mb-8" style="  box-shadow: 0 5px 15px rgb(11, 230, 219);">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-primary mb-8 initial-hidden" data-animate="slide-up-fade">Who We Are</h2>
+                <p class="text-lg text-white leading-relaxed mb-6 initial-hidden" data-animate="slide-up-fade" style="animation-delay: 0.1s;">
+Founded by passionate tech lovers, TechZone was created to make high-quality electronics accessible and affordable for everyone. We partner with trusted brands and suppliers to ensure every product meets our high standards for performance, durability, and authenticity.                </p>
+                <p class="text-lg text-white leading-relaxed mb-6 initial-hidden" data-animate="slide-up-fade" style="animation-delay: 0.2s;">
+                    Our journey began with a small team of passionate instructors and wellness enthusiasts. Over the years, we've grown into a thriving online community, continually expanding our offerings to include diverse courses, detailed pose guides, insightful videos, and recommended readings. We are committed to fostering a supportive environment where every member can achieve their physical and mental health goals.
+                </p>
+                <h3 class="text-3xl font-bold text-primary mt-12 mb-6 initial-hidden" data-animate="slide-up-fade" style="animation-delay: 0.3s;">Our Mission</h3>
+                <p class="text-lg text-white leading-relaxed mb-6 initial-hidden" data-animate="slide-up-fade" style="animation-delay: 0.4s;">
+To simplify your tech-buying experience by offering:
+
+Verified and original products
+
+Transparent pricing
+
+Fast shipping & easy returns
+
+Friendly customer support                </p>
+                <h3 class="text-3xl font-bold text-primary mt-12 mb-6 initial-hidden" data-animate="slide-up-fade" style="animation-delay: 0.5s;">Our Vision</h3>
+                <p class="text-lg text-white leading-relaxed initial-hidden" data-animate="slide-up-fade" style="animation-delay: 0.6s;">
+To become the most trusted and customer-focused online electronics store, empowering people through access to the latest, most reliable, and affordable technology — delivered with speed, care, and excellence.                </p>
+            </div>
+        </section>
+
+        <!-- Our Team Section -->
+        <section class="py-16  container mx-auto px-4 rounded-xl  mb-8" style="box-shadow: 0 5px 15px rgb(11, 230, 219);" >
+            <div class="max-w-6xl mx-auto" >
+                <h2 class="text-4xl font-bold t text-center mb-12 initial-hidden" data-animate="slide-up-fade" style="color: rgb(247, 5, 85);">Meet Our Dedicated Team</h2>
+                <div class="grid grid-cols-1 " style="background-color: rgb(2, 2, 87);">
+                    <!-- Team Member 1 -->
+                    <div class=" p-8 rounded-xl shadow-md text-center initial-hidden" data-animate="slide-up-fade" style="animation-delay: 0.1s; font-family: Georgia, 'Times New Roman', Times, serif; background-color: #190478;  box-shadow: 0 5px 15px rgb(11, 230, 219);">
+                        <img src="./assets/images/3.jpg" alt="Alex Johnson" class="team-member-img mx-auto mb-6">
+                        <h3 class="text-2xl font-semibold text-primary mb-2" >Ramsha khan</h3>
+                        <p class="text-white font-medium mb-3">Team Leader</p>
+                        <p class="text-white text-sm">Ramsha is the owner of the TechZone. She's also the backbone of our project.</p>
+                    </div>
+                    
+                   
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>TechZone</h5>
+                    <p>Your one-stop shop for the latest smart gadgets & accessories.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0" >
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="./about_us.html">About</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Tech Mall, Karachi City, Nazimabad 04</p>
+                        <p><i class="fas fa-phone-alt me-2"></i> (021) 456-70056</p>
+                        <p><i class="fas fa-envelope me-2"></i> ramshakhan@techzone.com</p>
+                    </div>
+                    <div class="social-icons mt-3">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+   <!-- jQuery (must be before Bootstrap JS) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    <script>
+        $(document).ready(function() {
+
+          
+           
+
+            // Function to handle animations on scroll using Intersection Observer
+            const animateOnScroll = () => {
+                const observerOptions = {
+                    root: null, // Use the viewport as the root
+                    rootMargin: '0px',
+                    threshold: 0.1 // Trigger when 10% of the element is visible
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const element = entry.target;
+                            const animationType = element.dataset.animate;
+
+                            // Apply animation class based on data-animate attribute
+                            if (animationType === 'slide-up-fade') {
+                                $(element).addClass('animate-slide-up-fade');
+                            }
+                            // Add more conditions here for other animation types if needed
+
+                            $(element).removeClass('initial-hidden'); // Remove the initial hidden state
+                            observer.unobserve(element); // Stop observing once the element has animated
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe all elements with the 'data-animate' attribute
+                document.querySelectorAll('[data-animate]').forEach(element => {
+                    $(element).addClass('initial-hidden'); // Ensure initial hidden state
+                    observer.observe(element);
+                });
+            };
+
+            // Call the animation function when the DOM is fully loaded
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
