@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechZone – Smart Gadgets & Accessories</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+    <!-- Font Awesome CSS for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    
+</head>
+<style>
+    
+.contact-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: #1a0272;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgb(5, 220, 248);
+    display: flex; /* Use flex to stack intro and grid */
+    flex-direction: column;
+    gap: 40px; /* Space between intro and contact grid */
+    overflow: hidden; /* Ensure animations don't bleed outside */
+}
+
+/* Introductory Text */
+.intro-text {
+    text-align: center;
+    margin-bottom: 20px; /* Space before the grid */
+    padding: 0 20px;
+}
+
+.intro-text h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Contact Grid for Form and Map/Social */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 40px; /* Space between columns */
+}
+
+.contact-form-wrapper {
+    background-color: #fcfcfc; /* Slightly different background for visual separation */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgb(2, 255, 234);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for form wrapper */
+}
+
+.contact-form-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.contact-form-wrapper h2,
+.map-and-social-column h2, /* Adjusted selector */
+.map-and-social-column h3 { /* Adjusted selector */
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Contact Form */
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"], /* Added for contact number */
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #0ad0eb;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Enhanced transition */
+}
+
+/* Validation Error Styles */
+.input-error {
+    border-color: #e74c3c !important; /* Red border for error */
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important; /* Red shadow for error */
+    /* Shake animation */
+    /* Animation applied directly in JS to trigger on demand */
+}
+
+/* Keyframes for shake animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error-message {
+    color: #e74c3c; /* Red text for error messages */
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: block; /* Ensure it takes its own line */
+    opacity: 0; /* Initially hidden */
+    max-height: 0; /* Collapsed height */
+    overflow: hidden; /* Hide overflow during transition */
+    transition: opacity 0.4s ease-out, max-height 0.4s ease-out; /* Smooth transition */
+}
+
+.error-message.show {
+    opacity: 1; /* Fade in */
+    max-height: 50px; /* Expand height to show content */
+}
+
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus,
+.contact-form textarea:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2);
+    background-color: #f8fcfb; /* Slight background change on focus */
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    background-image: linear-gradient(to right, #d10ca0 0%, #39daf0 100%);
+    color: #fff;
+    border: 2px solid #1abc9c; /* Added border */
+    padding: 15px 30px;
+    border-radius: 9999px; /* Made fully round/pill-shaped */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+    display: block; /* Changed to block for centering */
+    margin: 25px auto 0; /* Centered the button with top margin */
+    width: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Initial shadow */
+}
+
+.submit-btn:hover {
+    background: linear-gradient(45deg, #065f46, #047857); /* Reverse gradient on hover */
+    transform: translateY(-2px) scale(1.05); /* Lift and slight scale on hover */
+    box-shadow: 0 8px 16px rgba(7, 196, 22, 0.692); /* Enhanced shadow on hover */
+    border-color: #065f46; /* Border color change on hover */
+    
+}
+
+/* Map and Social Links Column */
+.map-and-social-column { /* New container for map and social links */
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between map and social links */
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fcfcfc;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for map/social wrapper */
+}
+
+.map-and-social-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.social-links-contact h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    text-align: center; /* Center social heading */
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center; /* Center social icons */
+}
+
+.social-links a {
+    color: #555;
+    font-size: 1.8rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #1abc9c;
+    transform: translateY(-5px) scale(1.1); /* More pronounced lift and slight scale */
+}
+
+/* Map Section */
+.map-section {
+    width: 100%;
+    border-radius: 10px; /* Match container radius */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.map-section h2 {
+    font-size: 2rem;
+    margin-bottom: 15px; /* Adjust margin for map heading */
+    text-align: center; /* Center map heading */
+}
+
+.map-section iframe {
+    border-radius: 10px;
+    height: 300px; /* Fixed height for the map for consistency */
+}
+
+/* Footer */
+.main-footer {
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 60px;
+    font-size: 0.9rem;
+}
+
+/* Animations for scroll-in effect */
+.initial-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.animate-slide-up-fade {
+    animation: slideUpFade 0.7s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Media Queries for Responsiveness */
+
+/* Tablets and smaller desktops */
+@media (max-width: 992px) {
+    .intro-text h2 {
+        font-size: 2rem;
+    }
+    .intro-text p {
+        font-size: 1rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        gap: 40px; /* Space between stacked form and details/map */
+    }
+    
+    .contact-form-wrapper h2,
+    .map-and-social-column h2,
+    .map-and-social-column h3 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .social-links-contact .social-links {
+        justify-content: center; /* Center social links */
+    }
+
+    .contact-form .form-row {
+        flex-direction: column; /* Stack first/last name vertically on smaller screens */
+        gap: 0;
+    }
+    .contact-form .form-row .form-group {
+        margin-bottom: 20px; /* Restore bottom margin for stacked groups */
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    
+
+    .contact-section {
+        padding: 30px 15px;
+        margin: 20px auto;
+    }
+
+    .intro-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .contact-form-wrapper,
+    .map-and-social-column {
+        padding: 20px;
+    }
+
+    .map-and-social-column h2,
+    .map-and-social-column h3 {
+        font-size: 1.6rem;
+    }
+
+    .social-links a {
+        font-size: 1.6rem;
+    }
+
+    .map-section iframe {
+        height: 250px;
+    }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+    .intro-text h2 {
+        font-size: 1.5rem;
+    }
+    .intro-text p {
+        font-size: 0.9rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    .social-links a {
+        font-size: 1.4rem;
+    }
+}
+
+        /* Keyframe for initial card fade-in/slide-up animation */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Applies initial animation to each distinct content block */
+        .initial-load-animation {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+            opacity: 0; /* Start hidden for animation */
+        }
+
+        /* Custom styling for input fields to match the reference site */
+        .form-input {
+            border: 1px solid #e0e0e0; /* Lighter border color */
+            background-color: #ffffff; /* White background for all inputs */
+            padding: 0.75rem 1.25rem; /* Consistent padding */
+            border-radius: 0.25rem; /* Slightly less rounded corners (rounded-lg) */
+            box-shadow: none; /* No initial shadow */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        /* New style for input error state */
+        .form-input.error {
+            border-color: #EF4444; /* Tailwind red-500 for error border */
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #EB5757; /* Accent color on focus (reddish-orange) */
+            box-shadow: 0 0 0 3px rgba(235, 87, 87, 0.3); /* Softer, matching focus ring with slightly more opacity */
+        }
+        /* Override focus style if it's in an error state */
+        .form-input.error:focus {
+            border-color: #EF4444; /* Keep red border on focus if it's an error */
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* Reddish shadow for error focus, slightly more pronounced */
+        }
+
+        /* Main card hover effect */
+        .main-card-effect:hover {
+            transform: translateY(-0.5rem) scale(1.005); /* Slight lift and scale */
+            box-shadow: 0 25px 50px -12px rgba(3, 109, 128, 0.986), 0 10px 20px -5px rgb(44, 185, 16); /* More pronounced shadow for "border effect" feel */
+            border: 1px solid rgba(5, 107, 10, 0.747); /* Subtle accent border on hover */
+        }
+        .main-card-effect
+        {
+            box-shadow: 0 25px 50px -12px rgba(2, 146, 57, 0.808), 0 10px 20px -5px rgb(21, 97, 6); /* More pronounced shadow for "border effect" feel */
+            background-color: rgb(247, 251, 252);
+        
+        }
+
+        /* Map wrapper styling within the contact info section */
+        .map-wrapper-in-section {
+            width: 80%;
+            border: 2px solid #40b908; /* Thick reddish-orange border */
+            border-radius: 1.8rem; /* More pronounced rounded corners */
+            overflow: hidden; /* Ensures iframe respects border-radius */
+            box-shadow: 0 10px 15px -3px rgba(9, 196, 49, 0.719), 0 4px 6px -2px rgba(37, 151, 122, 0.89); /* Subtle shadow */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out; /* Add transition */
+        }
+        .map-wrapper-in-section:hover {
+            transform: translateY(-0.25rem); /* Lift on hover */
+            box-shadow: 0 15px 20px -5px rgba(41, 226, 66, 0.87), 0 8px 10px -4px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+            border-color: #26aa05; /* Slightly darker accent on hover */
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* Approximately 4:3 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* Error message styling (kept consistent) */
+        .error-message {
+            color: #ef4444; /* Tailwind red-500 */
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        /* Message box for success/error (kept consistent) */
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745; /* Green for success */
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .message-box.error {
+            background-color: #dc3545; /* Red for error */
+        }
+        .message-box.show {
+            opacity: 1;
+        }
+        /* Icon hover animation (kept) */
+        .icon-bounce:hover svg {
+            transform: translateY(-3px) scale(1.1);
+            transition: transform 0.2s ease-out;
+        }
+        /* Button press animation (kept) */
+        .button-press:active {
+            transform: translateY(1px) scale(0.98);
+        }
+        /* New button styles for smaller size and enhanced hover */
+        .submit-button {
+            display: inline-block; /* Make button's width content-driven */
+            padding: 0.8rem 1.8rem; /* Adjusted padding for smaller size */
+            font-size: 1.0rem; /* Adjusted font size */
+            transition: all 0.3s ease-in-out; /* Smoother transitions for all properties */
+            box-shadow: 0 4px 6px rgba(39, 175, 12, 0.911); /* Initial subtle shadow */
+            border-radius: 9999px; /* Make the button fully rounded */
+            color: white;
+            background-color: #047857; /* Teal 600 for primary buttons */
+
+        }
+        .submit-button:hover {
+            transform: translateY(-2px) scale(1.02); /* More noticeable lift and scale */
+            box-shadow: 0 8px 12px rgba(10, 235, 10, 0.582), 0 4px 6px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+            border: 2px solid rgba(19, 168, 5, 0.6); /* More visible accent border on hover */
+            background-color: #047857; /* Teal 600 for primary buttons */
+        }
+       /* Custom Keyframe Animations for page/element transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+
+        @keyframes slideUpFadeIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up-fade {
+            animation: slideUpFadeIn 0.8s ease-out forwards;
+        }
+ .header-bg {
+            background-color: #ffffff; /* White header */
+        }
+        .main-accent {
+            color: #08d198; /* Teal 600 for main accents/icons */
+        }
+      
+       
+        .section-bg-light {
+            background-color: #ffffff; /* White section background */
+        }
+        .section-bg-accent {
+            background-color: #ecfdf5; /* Lightest teal for sections like features */
+        }
+        .text-primary {
+            color: #1a202c; /* Dark text for headings */
+        }
+        .text-secondary {
+            color: #4a5568; /* Slightly lighter text for paragraphs */
+        }
+        .footer-bg {
+            background-color:#047857;
+            color: #cbd5e0; /* Light text for footer */
+        }
+        .footer-link-hover:hover {
+            color: #ffffff;
+        }
+        .nav-link-hover:hover {
+            color: #047857; /* Teal 600 for nav link hover */
+        }
+
+        /* Hero Background for Contact Page with Placeholder */
+        .contact-hero-background {
+            background-image: url('./assets/images/runze-shi-1kIyfRdLMxI-unsplash.jpg'); /* Calming green/teal tone */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+</style>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html" style="font-size: xx-large;">TechZone</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about_us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact Us</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slider (Bootstrap Carousel) -->
+    <section id="home" class="p-0">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('./assets/images/sliderr\ 1.jpg');">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Latest Tech Deals</h5>
+                        <p>Discover cutting-edge gadgets at unbeatable prices.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('./assets/images/sliderr\ 2.jpg');">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Smart Living Solutions</h5>
+                        <p>Innovate your home with our smart devices.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('./assets/images/slider\ 3.jpg');">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Elevate Your Gaming</h5>
+                        <p>High-performance gear for serious gamers.</p>
+                    </div>
+             </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Content Area - Contact Section -->
+    <main class="contact-section">
+        <!-- Small Introductory Text -->
+        <div class="intro-text" data-animate="slide-up-fade" class="initial-hidden">
+            <h2>Reach Out To Us</h2>
+            <p>Need assistance with your order? Contact us below.</p>
+        </div>
+        <div class="contact-grid">
+            <!-- Contact Form Column -->
+            <div class="contact-form-wrapper" data-animate="slide-up-fade" class="initial-hidden">
+                <h2>Send Us a Message</h2>
+                <form class="contact-form" id="contactForm" action="#" method="POST">
+                     <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first-name" placeholder="Enter Your First Name" required>
+                            <span class="error-message" id="first-name-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last-name" placeholder="Enter Your Last Name" required>
+                            <span class="error-message" id="last-name-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter Your Email Address" required>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-number">Contact Number</label>
+                        <input type="tel" id="contact-number" name="contact-number" placeholder="Enter Your Contact Number" required>
+                        <span class="error-message" id="contact-number-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Enter Your Message Here..." required></textarea>
+                        <span class="error-message" id="message-error"></span>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <div id="form-status" class="hidden mt-4 text-center"></div>
+                </form>
+            </div>
+
+            <!-- Map and Social Links Column -->
+            <div class="map-and-social-column" data-animate="slide-up-fade" class="initial-hidden">
+                <div class="map-section">
+                    <h2>Our Location</h2>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.764580226456!2d74.34863371509377!3d31.5498309813627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391904a1b02b66e1%3A0x6b772d24a5d8f28c!2sMall%20of%20Lahore!5e0!3m2!1sen!2s!4v1678912345678!5m2!1sen!2s"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <div class="social-links-contact">
+                    <h3>Follow Us</h3>
+                        <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>  
+                </div>
+            </div>
+        </div>
+</main>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>TechZone</h5>
+                    <p>Your one-stop shop for the latest smart gadgets & accessories.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0" >
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="./about_us.html">About</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Tech Mall, Karachi City, Nazimabad 04</p>
+                        <p><i class="fas fa-phone-alt me-2"></i> (021) 456-70056</p>
+                        <p><i class="fas fa-envelope me-2"></i> ramshakhan@techzone.com</p>
+                    </div>
+                    <div class="social-icons mt-3">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery (must be before Bootstrap JS) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+         
+          
+            // Function to handle animations on scroll using Intersection Observer
+            const animateOnScroll = () => {
+                const observerOptions = {
+                    root: null, // Use the viewport as the root
+                    rootMargin: '0px',
+                    threshold: 0.1 // Trigger when 10% of the element is visible
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const element = entry.target;
+                            const animationType = element.dataset.animate;
+
+                            // Apply animation class based on data-animate attribute
+                            if (animationType === 'slide-up-fade') {
+                                $(element).addClass('animate-slide-up-fade');
+                            }
+                            // Add more conditions here for other animation types if needed
+
+                            $(element).removeClass('initial-hidden'); // Remove the initial hidden state
+                            observer.unobserve(element); // Stop observing once the element has animated
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe all elements with the 'data-animate' attribute
+                document.querySelectorAll('[data-animate]').forEach(element => {
+                    $(element).addClass('initial-hidden'); // Ensure initial hidden state
+                    observer.observe(element);
+                });
+            };
+
+            // Call the animation function when the DOM is fully loaded
+            animateOnScroll();
+        });
+     // Form Validation Logic - UPDATED FOR FIRST NAME / LAST NAME AND CONTACT NUMBER
+        const contactForm = document.getElementById('contactForm');
+        const firstNameInput = document.getElementById('first-name');
+        const lastNameInput = document.getElementById('last-name');
+        const emailInput = document.getElementById('email');
+        const contactNumberInput = document.getElementById('contact-number'); 
+        const messageInput = document.getElementById('message');
+        
+        const firstNameError = document.getElementById('first-name-error');
+        const lastNameError = document.getElementById('last-name-error');
+        const emailError = document.getElementById('email-error');
+        const contactNumberError = document.getElementById('contact-number-error'); 
+        const messageError = document.getElementById('message-error');
+        const formStatus = document.getElementById('form-status');
+
+        function validateFirstName() {
+            if (firstNameInput.value.trim() === '') {
+                firstNameError.textContent = 'First Name is required.';
+                firstNameInput.classList.add('input-error');
+                firstNameError.classList.add('show');
+                return false;
+            } else {
+                firstNameError.textContent = '';
+                firstNameInput.classList.remove('input-error');
+                firstNameError.classList.remove('show');
+                return true;
+            }
+        }
+
+        function validateLastName() {
+            if (lastNameInput.value.trim() === '') {
+                lastNameError.textContent = 'Last Name is required.';
+                lastNameInput.classList.add('input-error');
+                lastNameError.classList.add('show');
+                return false;
+            } else {
+                lastNameError.textContent = '';
+                lastNameInput.classList.remove('input-error');
+                lastNameError.classList.remove('show');
+                return true;
+            }
+        }
+
+        function validateEmail() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailInput.value.trim() === '') {
+                emailError.textContent = 'Email is required.';
+                emailInput.classList.add('input-error');
+                emailError.classList.add('show');
+                return false;
+            } else if (!emailRegex.test(emailInput.value.trim())) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailInput.classList.add('input-error');
+                emailError.classList.add('show');
+                return false;
+            } else {
+                emailError.textContent = '';
+                emailInput.classList.remove('input-error');
+                emailError.classList.remove('show');
+                return true;
+            }
+        }
+
+        // function to validate Contact Number
+        function validateContactNumber() {
+            const contactRegex =/03[0-9]{9}/;
+            if (contactNumberInput.value.trim() === '') {
+                contactNumberError.textContent = 'Contact is required.';
+                contactNumberInput.classList.remove('input-error');
+                contactNumberError.classList.remove('show');
+                return true;
+            } else if (!contactRegex.test(contactNumberInput.value.trim())) { 
+                contactNumberError.textContent = 'Please enter a valid contact number';
+                contactNumberInput.classList.add('input-error');
+                contactNumberError.classList.add('show');
+                return false;
+            } else {
+                contactNumberError.textContent = '';
+                contactNumberInput.classList.remove('input-error');
+                contactNumberError.classList.remove('show');
+                return true;
+            }
+        }
+
+        function validateMessage() {
+            if (messageInput.value.trim() === '') {
+                messageError.textContent = 'Message is required.';
+                messageInput.classList.add('input-error');
+                messageError.classList.add('show');
+                return false;
+            } else if (messageInput.value.trim().length < 10) {
+                messageError.textContent = 'Message must be at least 10 characters long.';
+                messageInput.classList.add('input-error');
+                messageError.classList.add('show');
+                return false;
+            } else {
+                messageError.textContent = '';
+                messageInput.classList.remove('input-error');
+                messageError.classList.remove('show');
+                return true;
+            }
+        }
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const isFirstNameValid = validateFirstName();
+            const isLastNameValid = validateLastName();
+            const isEmailValid = validateEmail();
+            const isContactNumberValid = validateContactNumber(); // Added
+            const isMessageValid = validateMessage();
+
+            if (isFirstNameValid && isLastNameValid && isEmailValid && isContactNumberValid && isMessageValid) { // Updated condition
+                formStatus.textContent = 'Message sent successfully!';
+                formStatus.classList.remove('text-red-600', 'hidden');
+                formStatus.classList.add('text-green-600', 'block');
+                contactForm.reset(); // Clear the form
+                // Clear any lingering error styles on success
+                firstNameInput.classList.remove('input-error');
+                lastNameInput.classList.remove('input-error');
+                emailInput.classList.remove('input-error');
+                contactNumberInput.classList.remove('input-error'); // Added
+                messageInput.classList.remove('input-error');
+            } else {
+                formStatus.textContent = 'Please correct the errors above.';
+                formStatus.classList.remove('text-green-600', 'hidden');
+                formStatus.classList.add('text-red-600', 'block');
+                // Ensure shake animation is applied to all invalid inputs
+                if (!isFirstNameValid) firstNameInput.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+                if (!isLastNameValid) lastNameInput.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+                if (!isEmailValid) emailInput.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+                if (!isContactNumberValid) contactNumberInput.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both'; // Added
+                if (!isMessageValid) messageInput.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+
+                // Force reflow for shake animation to re-trigger
+                void firstNameInput.offsetWidth;
+                void lastNameInput.offsetWidth;
+                void emailInput.offsetWidth;
+                void contactNumberInput.offsetWidth; // Added
+                void messageInput.offsetWidth;
+
+                 // Remove animation after it completes to allow re-triggering
+                setTimeout(() => {
+                    if (!isFirstNameValid) firstNameInput.style.animation = null;
+                    if (!isLastNameValid) lastNameInput.style.animation = null;
+                    if (!isEmailValid) emailInput.style.animation = null;
+                    if (!isContactNumberValid) contactNumberInput.style.animation = null; // Added
+                    if (!isMessageValid) messageInput.style.animation = null;
+                }, 500);
+            }
+        });
+
+        // Function to handle animations on scroll using Intersection Observer
+        const animateOnScroll = () => {
+            const observerOptions = {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const animationType = element.dataset.animate;
+
+                        // Apply animation class based on data-animate attribute
+                        if (animationType === 'slide-up-fade') {
+                            element.classList.add('animate-slide-up-fade');
+                        }
+                        // Add more conditions here for other animation types if needed
+
+                        element.classList.remove('initial-hidden'); // Remove the initial hidden state
+                        observer.unobserve(element); // Stop observing once the element has animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with the 'data-animate' attribute
+            document.querySelectorAll('[data-animate]').forEach(element => {
+                element.classList.add('initial-hidden'); // Ensure initial hidden state
+                observer.observe(element);
+            });
+        };
+
+        // Call the animation function when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
